@@ -24,12 +24,12 @@ public final class AntiCheat extends JavaPlugin implements Listener {
 	    @Override
 	    public void onEnable() {
 	    	getServer().getPluginManager().registerEvents(this, this);
-	        getLogger().info("AntiCheat activated!");
+	        getLogger().info("Anti-Pvplog activated!");
 	    }
 	    
 	    @Override
 	    public void onDisable() {
-	    	getLogger().info("AntiCheat de-activated!");
+	    	getLogger().info("Anti-Pvplog de-activated!");
 	    }
 	    
 	    
@@ -60,7 +60,6 @@ public final class AntiCheat extends JavaPlugin implements Listener {
 	                playersInCombat.remove(victim.getName());
 	                playersInCombat.remove(attacker.getName());
 	                getLogger().info("Out of combat");
-	             }, 20L * COMBAT_TIME);}
-	    				 
+	             }, 20L * COMBAT_TIME);}		 
 	    }
 }
