@@ -16,7 +16,7 @@ public final class AntiCheat extends JavaPlugin implements Listener {
 		
 		Map<String, Long> playersInCombat = new HashMap<String, Long>();
 		
-		static final int COMBAT_TIME = 10;
+		static final int COMBAT_TIME = 30;
 		
 		boolean takeTime = true;
 		long currentTime;
