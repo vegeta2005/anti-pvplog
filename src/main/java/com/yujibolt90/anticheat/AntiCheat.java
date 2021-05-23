@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -39,14 +40,20 @@ public final class AntiCheat extends JavaPlugin implements Listener {
 	        if (playersInCombat.containsKey(player.getName())) {
 	        	player.setHealth(0.0D);
 	        	getLogger().info("Pvp log");
+	        	playersInCombat.remove(player.getName());
+	        	getLogger().info("Out of combat");
 	        }
 	    }
 	    
-	    @EventHandler
+		@EventHandler
 	    public void isDamaged(EntityDamageByEntityEvent event) {
-	    	if (event.getEntityType() == EntityType.PLAYER){
-	    		Player victim = (Player) event.getEntity();
+			
+		    	if (!(event.getEntity() instanceof Player)||!(event.getDamager() instanceof Player))
+		    		return;
+		    	
+		    	Player victim = (Player) event.getEntity();
 	    		Player attacker = (Player) event.getDamager();
+	    		
 	    		long timestamp = victim.getWorld().getTime();
 	    		
 	    		getLogger().info("Logged in combat");
@@ -60,6 +67,6 @@ public final class AntiCheat extends JavaPlugin implements Listener {
 	                playersInCombat.remove(victim.getName());
 	                playersInCombat.remove(attacker.getName());
 	                getLogger().info("Out of combat");
-	             }, 20L * COMBAT_TIME);}		 
+	            }, 20L * COMBAT_TIME);
 	    }
 }
